@@ -58,6 +58,9 @@ func (c *ProxyClientConfig) applyDefaults() {
 	}
 }
 
+// NewProxyClient creates a new HTTP client using the provided configuration.
+// It applies default values to the configuration if necessary and returns an HTTP client
+// that uses a proxy transport.
 func NewProxyClient(config *ProxyClientConfig) (*http.Client, error) {
 	if config == nil {
 		config = &ProxyClientConfig{}
