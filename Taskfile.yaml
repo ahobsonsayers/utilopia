@@ -1,0 +1,18 @@
+# Docs: https://taskfile.dev/#/usage
+version: "3"
+
+tasks:
+  lint:
+    cmds:
+      - golangci-lint run
+
+  format:
+    cmds:
+      - go fmt ./...
+      - go run github.com/segmentio/golines@latest -w .
+
+  test:
+    cmds:
+      - |
+        go clean -testcache
+        go test ./...

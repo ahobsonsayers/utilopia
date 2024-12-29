@@ -1,0 +1,59 @@
+# Docs: https://golangci-lint.run/usage/configuration/#config-file
+run:
+  go: "1.21"
+
+linters:
+  enable:
+    # Default linters: https://golangci-lint.run/usage/linters#enabled-by-default
+    - gci # https://golangci-lint.run/usage/linters/#gci
+    - gocritic # https://golangci-lint.run/usage/linters/#gocritic
+    - gofumpt # https://golangci-lint.run/usage/linters/#gofumpt
+    - goimports # https://golangci-lint.run/usage/linters/#goimports
+    - gosimple # https://golangci-lint.run/usage/linters/#gosimple
+    - govet # https://golangci-lint.run/usage/linters/#govet
+    - makezero # https://golangci-lint.run/usage/linters/#makezero
+    - misspell # https://golangci-lint.run/usage/linters/#misspell
+    - revive # https://golangci-lint.run/usage/linters/#revive
+    - sloglint # https://golangci-lint.run/usage/linters/#sloglint
+    - stylecheck # https://golangci-lint.run/usage/linters/#stylecheck
+    - testifylint # https://golangci-lint.run/usage/linters/#testifylint
+    - testifylint # https://golangci-lint.run/usage/linters/#testifylint
+    - unparam # https://golangci-lint.run/usage/linters/#unparam
+    - usestdlibvars # https://golangci-lint.run/usage/linters/#usestdlibvars
+
+linters-settings:
+  gocritic:
+    enable-all: true
+    disabled-checks:
+      - commentedOutCode
+      - rangeValCopy
+      - whyNoLint
+
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment # Flags if ordering of struct fields would take less memory
+
+  revive:
+    enable-all-rules: true
+    rules:
+      - name: add-constant # Flags if using a magic number
+        disabled: true
+
+      - name: line-length-limit
+        arguments: [120]
+
+      - name: unhandled-error
+        arguments:
+          - fmt.Printf
+          - fmt.Println
+
+      - name: var-naming
+        arguments:
+          - ["ID", "URL"] # AllowList
+          - [] # DenyList
+
+  stylecheck:
+    checks:
+      - all
+      - -ST1003 # Duplicate check of var-naming from revive
