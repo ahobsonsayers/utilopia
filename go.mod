@@ -1,4 +1,4 @@
-module github.com/ahobsonsayers/twigots
+module github.com/ahobsonsayers/utilopia
 
 go 1.21
 
