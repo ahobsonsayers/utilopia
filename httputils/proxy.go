@@ -68,7 +68,7 @@ func NewProxyClient(config *ProxyClientConfig) (*http.Client, error) {
 	config.applyDefaults()
 
 	if len(config.ProxyLists) == 0 {
-		return nil, fmt.Errorf("at least one proxy list url must be passed")
+		return nil, errors.New("at least one proxy list url must be passed")
 	}
 
 	proxyTransport, err := newProxyTransport(config)
@@ -140,7 +140,7 @@ func downloadProxyList(proxyListUrl string) ([]url.URL, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close() // nolint: errcheck
 	return parseProxyList(resp.Body)
 }
 
