@@ -3,7 +3,6 @@ package envutils
 import (
 	"os"
 	"strconv"
-	"testing"
 )
 
 // IsCI checks if the current environment is a CI/CD environment.
@@ -20,11 +19,4 @@ func IsCI() bool {
 	}
 
 	return isCI
-}
-
-// SkipIfCI skips the test if the current environment is a CI/CD environment.
-func SkipIfCI(t *testing.T, args ...any) {
-	if IsCI() {
-		t.Skip(args...)
-	}
 }
